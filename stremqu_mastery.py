@@ -359,9 +359,6 @@ def main():
 
     with st.expander("⚠️ Disclaimer", expanded=True):
         st.markdown("""
-        - Maksimal ukuran upload: **600 MB per file**.
-        - Format video yang didukung: **MP4, FLV, MOV, MKV, WEBM**.
-        - Gunakan file yang sesuai dengan batas ukuran agar proses upload berjalan lancar.
         - Layanan gratis mengikuti kebijakan dan batasan penyedia hosting.
         - Durasi streaming tergantung resource yang tersedia pada Streamlit.
         - Tidak menjamin jumlah view, penonton, subscriber, atau hasil tertentu.
