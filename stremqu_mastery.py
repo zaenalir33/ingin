@@ -442,11 +442,8 @@ def main():
     st.session_state.setdefault("bottom_video", st.session_state.streaming_mode == "5 Video Playlist")
     st.session_state.setdefault("bottom_mp3", st.session_state.streaming_mode == "Video + MP3")
 
-    col_mode1, col_mode2 = st.columns(2, gap="medium")
-    with col_mode1:
-        st.checkbox("🎬 5 Video Playlist", key="top_video", on_change=sync_mode, args=("top_video",))
-    with col_mode2:
-        st.checkbox("🎵 Video + MP3", key="top_mp3", on_change=sync_mode, args=("top_mp3",))
+    st.checkbox("🎬 5 Video Playlist", key="top_video", on_change=sync_mode, args=("top_video",))
+    st.checkbox("🎵 Video + MP3", key="top_mp3", on_change=sync_mode, args=("top_mp3",))
 
     mode = st.session_state.streaming_mode
 
@@ -733,11 +730,8 @@ def main():
 
     with col2:
         st.markdown("### PILIH MODE STREAMING")
-    col_mode_bottom1, col_mode_bottom2 = st.columns(2, gap="medium")
-    with col_mode_bottom1:
-        st.checkbox("🎬 5 Video Playlist", key="bottom_video", on_change=sync_mode, args=("bottom_video",))
-    with col_mode_bottom2:
-        st.checkbox("🎵 Video + MP3", key="bottom_mp3", on_change=sync_mode, args=("bottom_mp3",))
+    st.checkbox("🎬 5 Video Playlist", key="bottom_video", on_change=sync_mode, args=("bottom_video",))
+    st.checkbox("🎵 Video + MP3", key="bottom_mp3", on_change=sync_mode, args=("bottom_mp3",))
 
     if st.button("⏹️ Hentikan Streaming", disabled=not streaming, use_container_width=True):
             stop_ffmpeg()
