@@ -10,9 +10,11 @@ from pathlib import Path
 # Install streamlit jika belum ada
 try:
     import streamlit as st
+    import streamlit.components.v1 as components
 except ImportError:
     subprocess.check_call([sys.executable, "-m", "pip", "install", "streamlit"])
     import streamlit as st
+    import streamlit.components.v1 as components
 
 
 APP_DIR = Path(__file__).resolve().parent
@@ -346,18 +348,38 @@ def main():
         page_icon="🎥",
         layout="wide"
     )
-    st.title("STREMQU MASTERY")
+    st.title("STREMQU MASTERY by TNS")
+    st.markdown("[YouTube](https://www.youtube.com/@thexextsolutionid)")
+    st.caption("Tools live streaming YouTube pribadi, tanpa habiskan kuota, sewa RDP, VPS dll.")
 
     st.markdown(
         """
-        <div style="background-color:#fff3cd; border:1px solid #ffe69c; color:#664d03; padding:12px 16px; border-radius:8px; margin:10px 0 18px 0;">
-            <b>Tools live streaming YouTube pribadi, tanpa habiskan kuota, sewa RDP, VPS dll.</b>
+        <div style="background-color:#fff3cd; border:1px solid #ffe69c; color:#664d03; padding:12px 16px; border-radius:8px; margin:0 0 12px 0;">
+            <b>Disclaimer</b>
+            <ul style="margin:8px 0 0 20px; padding:0;">
+                <li>Gunakan file yang tidak terlalu besar.</li>
+                <li>Layanan gratis mengikuti kebijakan penyedia.</li>
+                <li>Durasi streaming tergantung resource Streamlit.</li>
+                <li>Tidak menjamin view, penonton, subscriber, atau hasil tertentu.</li>
+            </ul>
         </div>
         """,
         unsafe_allow_html=True
     )
 
-    # Blok iklan lama yang memakai components.html sengaja dihapus karena API tersebut deprecated.
+    show_ads = st.checkbox("Tampilkan Iklan", value=True)
+    if show_ads:
+        components.html(
+            """
+            <div style="background:#f0f2f6;padding:20px;border-radius:10px;text-align:center">
+                <script type='text/javascript'
+                        src='//pl26562103.profitableratecpm.com/28/f9/95/28f9954a1d5bbf4924abe123c76a68d2.js'>
+                </script>
+                <p style="color:#888">Iklan akan muncul di sini</p>
+            </div>
+            """,
+            height=300
+        )
 
     mode = st.radio(
         "Pilih Mode Streaming",
