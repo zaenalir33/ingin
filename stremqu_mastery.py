@@ -357,20 +357,12 @@ def main():
         unsafe_allow_html=True
     )
 
-    st.markdown(
-        """
-        <div style="background-color:#fff3cd; border:1px solid #ffe69c; color:#664d03; padding:12px 16px; border-radius:8px; margin:0 0 12px 0;">
-            <b>Disclaimer</b>
-            <ul style="margin:8px 0 0 20px; padding:0;">
-                <li>Gunakan file yang tidak terlalu besar.</li>
-                <li>Layanan gratis mengikuti kebijakan penyedia.</li>
-                <li>Durasi streaming tergantung resource Streamlit.</li>
-                <li>Tidak menjamin view, penonton, subscriber, atau hasil tertentu.</li>
-            </ul>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+    with st.expander("⚠️ Disclaimer", expanded=False):
+        st.warning(
+            "Gunakan file yang tidak terlalu besar. Layanan gratis mengikuti kebijakan penyedia. "
+            "Durasi streaming tergantung resource Streamlit. Tidak menjamin view, penonton, "
+            "subscriber, atau hasil tertentu."
+        )
 
     show_ads = st.checkbox("Tampilkan Iklan", value=True)
     if show_ads:
