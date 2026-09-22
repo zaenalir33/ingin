@@ -10,11 +10,9 @@ from pathlib import Path
 # Install streamlit jika belum ada
 try:
     import streamlit as st
-    import streamlit.components.v1 as components
 except ImportError:
     subprocess.check_call([sys.executable, "-m", "pip", "install", "streamlit"])
     import streamlit as st
-    import streamlit.components.v1 as components
 
 
 APP_DIR = Path(__file__).resolve().parent
@@ -344,27 +342,22 @@ def stop_ffmpeg():
 
 def main():
     st.set_page_config(
-        page_title="STREMQU MASTERY",
+        page_title="YouTube Live Streaming",
         page_icon="🎥",
         layout="wide"
     )
     st.title("STREMQU MASTERY")
-    st.write("Tools live streaming YouTube pribadi, tanpa habiskan kuota, sewa RDP, VPS dll.")
 
-    # Pengaturan iklan
-    show_ads = st.checkbox("Tampilkan Iklan", value=True)
-    if show_ads:
-        components.html(
-            """
-            <div style="background:#f0f2f6;padding:20px;border-radius:10px;text-align:center">
-                <script type="text/javascript"
-                    src="//pl26562103.profitableratecpm.com/28/f9/95/28f9954a1d5bbf4924abe123c76a68d2.js">
-                </script>
-                <p style="color:#888">Iklan akan muncul di sini</p>
-            </div>
-            """,
-            height=300
-        )
+    st.markdown(
+        """
+        <div style="background-color:#fff3cd; border:1px solid #ffe69c; color:#664d03; padding:12px 16px; border-radius:8px; margin:10px 0 18px 0;">
+            <b>Tools live streaming YouTube pribadi, tanpa habiskan kuota, sewa RDP, VPS dll.</b>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    # Blok iklan lama yang memakai components.html sengaja dihapus karena API tersebut deprecated.
 
     mode = st.radio(
         "Pilih Mode Streaming",
