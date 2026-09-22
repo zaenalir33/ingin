@@ -344,7 +344,7 @@ def stop_ffmpeg():
 
 def main():
     st.set_page_config(
-        page_title="YouTube Live Streaming",
+        page_title="STREMQU | YouTube Live Streaming",
         page_icon="🎥",
         layout="wide"
     )
@@ -353,7 +353,7 @@ def main():
         unsafe_allow_html=True
     )
     st.markdown(
-        '<h2>Tools live streaming YouTube pribadi, tanpa habiskan kuota, sewa RDP, VPS dll.</h2>',
+        '<h3>Tools live streaming YouTube pribadi tanpa habiskan kuota, sewa RDP, VPS dll.</h3>',
         unsafe_allow_html=True
     )
 
