@@ -357,12 +357,15 @@ def main():
         unsafe_allow_html=True
     )
 
-    with st.expander("⚠️ Disclaimer", expanded=False):
-        st.warning(
-            "Gunakan file yang tidak terlalu besar. Layanan gratis mengikuti kebijakan penyedia. "
-            "Durasi streaming tergantung resource Streamlit. Tidak menjamin view, penonton, "
-            "subscriber, atau hasil tertentu."
-        )
+    with st.expander("⚠️ Disclaimer", expanded=True):
+        st.markdown("""
+        - Maksimal ukuran upload: **600 MB per file**.
+        - Format video yang didukung: **MP4, FLV, MOV, MKV, WEBM**.
+        - Gunakan file yang sesuai dengan batas ukuran agar proses upload berjalan lancar.
+        - Layanan gratis mengikuti kebijakan dan batasan penyedia hosting.
+        - Durasi streaming tergantung resource yang tersedia pada Streamlit.
+        - Tidak menjamin jumlah view, penonton, subscriber, atau hasil tertentu.
+        """)
 
     show_ads = st.checkbox("Tampilkan Iklan", value=True)
     if show_ads:
@@ -403,12 +406,11 @@ def main():
 
             if source == "Upload dari perangkat":
                 uploaded_file = st.file_uploader(
-                    f"Upload Video {slot}",
+                    f"Upload Video {slot} — 600 MB per file • MP4, FLV, MOV, MKV, WEBM",
                     type=["mp4", "flv", "mov", "mkv", "webm"],
                     key=f"video_uploader_{slot}",
                     help=f"Video ke-{slot} dalam urutan playlist."
                 )
-                st.markdown("**600 MB per file** • MP4, FLV, MOV, MKV, WEBM")
                 if uploaded_file is not None:
                     saved = save_uploaded_file(uploaded_file, slot)
                     st.session_state[f"playlist_video_path_{slot}"] = saved
@@ -493,7 +495,7 @@ def main():
 
         if video_source == "Upload dari perangkat":
             uploaded_video = st.file_uploader(
-                "Video Background",
+                "Video Background — 600 MB per file • MP4, FLV, MOV, MKV, WEBM",
                 type=["mp4", "flv", "mov", "mkv", "webm"],
                 key="single_video_uploader",
                 help="Video yang akan di-loop terus selama playlist MP3 berjalan.",
