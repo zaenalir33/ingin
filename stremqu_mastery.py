@@ -399,12 +399,14 @@ def main():
                 ["Upload dari perangkat", "Link langsung", "Google Drive"],
                 horizontal=True,
                 key=f"playlist_video_source_{slot}",
+                label_visibility="collapsed",
             )
 
             if source == "Upload dari perangkat":
                 uploaded_file = st.file_uploader(
                     f"Upload Video {slot} — 600 MB per file • MP4, FLV, MOV, MKV, WEBM",
                     type=["mp4", "flv", "mov", "mkv", "webm"],
+                    label_visibility="collapsed",
                     key=f"video_uploader_{slot}",
                     help=f"Video ke-{slot} dalam urutan playlist."
                 )
@@ -494,10 +496,10 @@ def main():
             uploaded_video = st.file_uploader(
                 "Video Background — 600 MB per file • MP4, FLV, MOV, MKV, WEBM",
                 type=["mp4", "flv", "mov", "mkv", "webm"],
+                label_visibility="collapsed",
                 key="single_video_uploader",
                 help="Video yang akan di-loop terus selama playlist MP3 berjalan.",
             )
-            st.markdown("**600 MB per file** • MP4, FLV, MOV, MKV, WEBM")
             if uploaded_video is not None:
                 video_saved = save_uploaded_file(uploaded_video, 1)
                 st.success(f"Video siap: {uploaded_video.name}")
@@ -559,7 +561,6 @@ def main():
                 key=f"mp3_uploader_{slot}",
                 help=f"MP3 ke-{slot}. Setelah MP3 {slot} selesai, lanjut ke MP3 berikutnya.",
             )
-            st.markdown("**600 MB per file** • MP3")
             if uploaded_audio is not None:
                 audio_saved = save_uploaded_audio(uploaded_audio, slot)
                 st.success(f"MP3 {slot} siap: {uploaded_audio.name}")
