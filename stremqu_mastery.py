@@ -371,8 +371,13 @@ def main():
 
         /* Mode streaming memakai checkbox native seperti menu "📢 Tampilkan Iklan". */
         div[data-testid="stCheckbox"] label {
-            font-size: 1.05rem !important;
+            font-size: 1.75rem !important;
             font-weight: 600 !important;
+        }
+        .streaming-mode-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin: 0.5rem 0 0.25rem 0;
         }
                 </style>
         """,
@@ -408,42 +413,40 @@ def main():
             height=300
         )
 
-    st.markdown("## PILIH MODE STREAMING")
+    st.markdown("### PILIH MODE STREAMING")
 
-    # Mode streaming dibuat seperti menu checkbox, sama seperti "📢 Tampilkan Iklan",
-    # tanpa tombol besar. Hanya satu mode yang dapat aktif pada satu waktu.
+    # Mode streaming dibuat seperti menu checkbox, sama seperti "📢 Tampilkan Iklan".
+    # Default: 🎬 5 Video Playlist. Menu ditampilkan di atas dan di bawah.
     if "streaming_mode" not in st.session_state:
         st.session_state.streaming_mode = "5 Video Playlist"
 
-    def select_mode_5_video():
-        if st.session_state.mode_5_video_checkbox:
+    def sync_mode(source):
+        if source == "top_video":
             st.session_state.streaming_mode = "5 Video Playlist"
-        else:
-            st.session_state.mode_5_video_checkbox = True
-
-    def select_mode_video_mp3():
-        if st.session_state.mode_video_mp3_checkbox:
+        elif source == "top_mp3":
             st.session_state.streaming_mode = "Video + MP3"
-        else:
-            st.session_state.mode_video_mp3_checkbox = True
+        elif source == "bottom_video":
+            st.session_state.streaming_mode = "5 Video Playlist"
+        elif source == "bottom_mp3":
+            st.session_state.streaming_mode = "Video + MP3"
 
-    # Sinkronkan nilai checkbox dengan mode yang aktif.
-    st.session_state.mode_5_video_checkbox = st.session_state.streaming_mode == "5 Video Playlist"
-    st.session_state.mode_video_mp3_checkbox = st.session_state.streaming_mode == "Video + MP3"
+        active = st.session_state.streaming_mode
+        for key in ("top_video", "bottom_video"):
+            st.session_state[key] = active == "5 Video Playlist"
+        for key in ("top_mp3", "bottom_mp3"):
+            st.session_state[key] = active == "Video + MP3"
+
+    # Nilai awal checkbox.
+    st.session_state.setdefault("top_video", st.session_state.streaming_mode == "5 Video Playlist")
+    st.session_state.setdefault("top_mp3", st.session_state.streaming_mode == "Video + MP3")
+    st.session_state.setdefault("bottom_video", st.session_state.streaming_mode == "5 Video Playlist")
+    st.session_state.setdefault("bottom_mp3", st.session_state.streaming_mode == "Video + MP3")
 
     col_mode1, col_mode2 = st.columns(2, gap="medium")
     with col_mode1:
-        st.checkbox(
-            "🎬 5 Video Playlist",
-            key="mode_5_video_checkbox",
-            on_change=select_mode_5_video,
-        )
+        st.checkbox("🎬 5 Video Playlist", key="top_video", on_change=sync_mode, args=("top_video",))
     with col_mode2:
-        st.checkbox(
-            "🎵 Video + MP3",
-            key="mode_video_mp3_checkbox",
-            on_change=select_mode_video_mp3,
-        )
+        st.checkbox("🎵 Video + MP3", key="top_mp3", on_change=sync_mode, args=("top_mp3",))
 
     mode = st.session_state.streaming_mode
 
@@ -729,7 +732,14 @@ def main():
                 st.success("Streaming dimulai ke YouTube!")
 
     with col2:
-        if st.button("⏹️ Hentikan Streaming", disabled=not streaming, use_container_width=True):
+        st.markdown("### PILIH MODE STREAMING")
+    col_mode_bottom1, col_mode_bottom2 = st.columns(2, gap="medium")
+    with col_mode_bottom1:
+        st.checkbox("🎬 5 Video Playlist", key="bottom_video", on_change=sync_mode, args=("bottom_video",))
+    with col_mode_bottom2:
+        st.checkbox("🎵 Video + MP3", key="bottom_mp3", on_change=sync_mode, args=("bottom_mp3",))
+
+    if st.button("⏹️ Hentikan Streaming", disabled=not streaming, use_container_width=True):
             stop_ffmpeg()
             st.warning("Streaming dihentikan!")
 
