@@ -381,14 +381,14 @@ def main():
         unsafe_allow_html=True
     )
 
-    with st.expander("⚠️ Disclaimer", expanded=True):
+    with st.expander("⚠️ DISCLAIMER", expanded=True):
         st.markdown("""
         - Layanan gratis mengikuti kebijakan dan batasan penyedia hosting.
         - Durasi streaming tergantung resource yang tersedia pada Streamlit.
         - Tidak menjamin jumlah view, penonton, subscriber, atau hasil tertentu.
         """)
 
-    show_ads = st.checkbox("Tampilkan Iklan", value=True)
+    show_ads = st.expander("Tampilkan Iklan", expanded=True)
     if show_ads:
         components.html(
             """
