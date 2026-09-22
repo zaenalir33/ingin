@@ -425,23 +425,15 @@ def main():
             st.session_state.streaming_mode = "5 Video Playlist"
         elif source == "top_mp3":
             st.session_state.streaming_mode = "Video + MP3"
-        elif source == "bottom_video":
-            st.session_state.streaming_mode = "5 Video Playlist"
-        elif source == "bottom_mp3":
-            st.session_state.streaming_mode = "Video + MP3"
-
         active = st.session_state.streaming_mode
-        for key in ("top_video", "bottom_video"):
+        for key in ("top_video",):
             st.session_state[key] = active == "5 Video Playlist"
-        for key in ("top_mp3", "bottom_mp3"):
+        for key in ("top_mp3",):
             st.session_state[key] = active == "Video + MP3"
 
     # Nilai awal checkbox.
     st.session_state.setdefault("top_video", st.session_state.streaming_mode == "5 Video Playlist")
     st.session_state.setdefault("top_mp3", st.session_state.streaming_mode == "Video + MP3")
-    st.session_state.setdefault("bottom_video", st.session_state.streaming_mode == "5 Video Playlist")
-    st.session_state.setdefault("bottom_mp3", st.session_state.streaming_mode == "Video + MP3")
-
     st.checkbox("🎬 5 Video Playlist", key="top_video", on_change=sync_mode, args=("top_video",))
     st.checkbox("🎵 Video + MP3", key="top_mp3", on_change=sync_mode, args=("top_mp3",))
 
@@ -663,11 +655,10 @@ def main():
             for i, path in enumerate(audio_paths, 1):
                 st.write(f"{i}. {Path(path).name}")
 
-    st.subheader("3. STREAM KEY YOUTUBE")
-    stream_key = st.text_input("Stream Key YouTube", type="password", label_visibility="collapsed")
+    stream_key = st.text_input("3. STREAM KEY YOUTUBE", type="password")
     is_shorts = st.checkbox("Mode Shorts (720x1280)")
 
-    st.subheader("4. PENGATURAN DURASI STREAMING")
+    st.subheader("4. DURASI STREAMING")
     playback_mode = st.radio(
         "Jalankan streaming",
         ["Tanpa batas", "Jumlah pengulangan", "Durasi streaming"],
@@ -730,9 +721,7 @@ def main():
                 st.success("Streaming dimulai ke YouTube!")
 
     with col2:
-        st.markdown("### PILIH MODE STREAMING")
-    st.checkbox("🎬 5 Video Playlist", key="bottom_video", on_change=sync_mode, args=("bottom_video",))
-    st.checkbox("🎵 Video + MP3", key="bottom_mp3", on_change=sync_mode, args=("bottom_mp3",))
+        pass
 
     if st.button("⏹️ Hentikan Streaming", disabled=not streaming, use_container_width=True):
             stop_ffmpeg()
