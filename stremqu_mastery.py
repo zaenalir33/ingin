@@ -538,7 +538,7 @@ def main():
             st.info("Belum ada video. Tambahkan minimal 1 video untuk memulai streaming.")
 
     else:
-        st.subheader("2. UPLOAD VIDEO + MP3 (MIN 1 VIDEO + 1 MP3")
+        st.subheader("2. UPLOAD VIDEO + MP3 (MIN 1 VIDEO + 1 MP3)")
         st.caption("1 video di-loop terus + MP3 1 → 2 → 3 → 4 → 5. Mode hemat CPU untuk Streamlit Cloud: encoding 1080p/20fps, preset ultrafast, dan bitrate CPU-efisien.")
         st.info("Tips: gunakan MP4 H.264 + AAC dan MP3 bitrate normal (128–320 kbps) agar perpindahan audio lebih lancar.")
 
@@ -659,7 +659,7 @@ def main():
     stream_key = st.text_input("Stream Key YouTube", type="password", label_visibility="collapsed")
     is_shorts = st.checkbox("Mode Shorts (720x1280)")
 
-    st.subheader("4. PENGATURAN DURASI STREAMING")
+    st.subheader("4. DURASI STREAMING")
     playback_mode = st.radio(
         "Jalankan streaming",
         ["Tanpa batas", "Jumlah pengulangan", "Durasi streaming"],
