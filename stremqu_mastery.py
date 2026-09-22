@@ -369,21 +369,10 @@ def main():
             display: none !important;
         }
 
-        /* Pilihan mode streaming - gaya checklist */
-        div[data-testid="stButton"] button {
-            min-height: 48px !important;
-            border-radius: 8px !important;
-            font-size: 1.17rem !important;
-            font-weight: 700 !important;
-            padding: 8px 14px !important;
-            text-align: left !important;
-            transition: background 0.12s ease, border-color 0.12s ease !important;
-        }
-        div[data-testid="stButton"] button:hover {
-            filter: brightness(1.04);
-        }
-        .mode-title {
-            display: none !important;
+        /* Mode streaming memakai checkbox native seperti menu "📢 Tampilkan Iklan". */
+        div[data-testid="stCheckbox"] label {
+            font-size: 1.05rem !important;
+            font-weight: 600 !important;
         }
                 </style>
         """,
@@ -421,31 +410,40 @@ def main():
 
     st.markdown("## PILIH MODE STREAMING")
 
-    # Mode disimpan di session_state agar pilihan tetap aktif setelah tombol ditekan.
+    # Mode streaming dibuat seperti menu checkbox, sama seperti "📢 Tampilkan Iklan",
+    # tanpa tombol besar. Hanya satu mode yang dapat aktif pada satu waktu.
     if "streaming_mode" not in st.session_state:
         st.session_state.streaming_mode = "5 Video Playlist"
 
-    col_mode1, col_mode2 = st.columns(2, gap="medium")
-
-    with col_mode1:
-        check1 = "☑" if st.session_state.streaming_mode == "5 Video Playlist" else "☐"
-        if st.button(
-            f"{check1}  🎬 5 Video Playlist",
-            key="mode_5_video_playlist",
-            use_container_width=True,
-        ):
+    def select_mode_5_video():
+        if st.session_state.mode_5_video_checkbox:
             st.session_state.streaming_mode = "5 Video Playlist"
-            st.rerun()
+        else:
+            st.session_state.mode_5_video_checkbox = True
 
-    with col_mode2:
-        check2 = "☑" if st.session_state.streaming_mode == "Video + MP3" else "☐"
-        if st.button(
-            f"{check2}  🎵 Video + MP3",
-            key="mode_video_mp3",
-            use_container_width=True,
-        ):
+    def select_mode_video_mp3():
+        if st.session_state.mode_video_mp3_checkbox:
             st.session_state.streaming_mode = "Video + MP3"
-            st.rerun()
+        else:
+            st.session_state.mode_video_mp3_checkbox = True
+
+    # Sinkronkan nilai checkbox dengan mode yang aktif.
+    st.session_state.mode_5_video_checkbox = st.session_state.streaming_mode == "5 Video Playlist"
+    st.session_state.mode_video_mp3_checkbox = st.session_state.streaming_mode == "Video + MP3"
+
+    col_mode1, col_mode2 = st.columns(2, gap="medium")
+    with col_mode1:
+        st.checkbox(
+            "🎬 5 Video Playlist",
+            key="mode_5_video_checkbox",
+            on_change=select_mode_5_video,
+        )
+    with col_mode2:
+        st.checkbox(
+            "🎵 Video + MP3",
+            key="mode_video_mp3_checkbox",
+            on_change=select_mode_video_mp3,
+        )
 
     mode = st.session_state.streaming_mode
 
