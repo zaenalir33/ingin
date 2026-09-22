@@ -345,7 +345,7 @@ def stop_ffmpeg():
 def main():
     st.set_page_config(
         page_title="STREMQU | YouTube Live Streaming",
-        page_icon="LIVE 🔴",
+        page_icon="🎬",
         layout="wide"
     )
     st.markdown(
