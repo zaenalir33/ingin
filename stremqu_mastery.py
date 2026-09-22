@@ -416,7 +416,7 @@ def main():
     st.markdown("### 1. PILIH MODE STREAMING")
 
     # Mode streaming dibuat seperti menu checkbox, sama seperti "📢 Tampilkan Iklan".
-    # Default: 🎬 5 Video Playlist. Menu ditampilkan di atas dan di bawah.
+    # Default: 🎬 5 Video Playlist. Menu ditampilkan satu kali di atas.
     if "streaming_mode" not in st.session_state:
         st.session_state.streaming_mode = "5 Video Playlist"
 
@@ -655,10 +655,11 @@ def main():
             for i, path in enumerate(audio_paths, 1):
                 st.write(f"{i}. {Path(path).name}")
 
-    stream_key = st.text_input("3. STREAM KEY YOUTUBE", type="password")
+    st.subheader("3. STREAM KEY YOUTUBE")
+    stream_key = st.text_input("Stream Key YouTube", type="password", label_visibility="collapsed")
     is_shorts = st.checkbox("Mode Shorts (720x1280)")
 
-    st.subheader("4. DURASI STREAMING")
+    st.subheader("4. PENGATURAN DURASI STREAMING")
     playback_mode = st.radio(
         "Jalankan streaming",
         ["Tanpa batas", "Jumlah pengulangan", "Durasi streaming"],
@@ -721,9 +722,7 @@ def main():
                 st.success("Streaming dimulai ke YouTube!")
 
     with col2:
-        pass
-
-    if st.button("⏹️ Hentikan Streaming", disabled=not streaming, use_container_width=True):
+        if st.button("⏹️ Hentikan Streaming", disabled=not streaming, use_container_width=True):
             stop_ffmpeg()
             st.warning("Streaming dihentikan!")
 
