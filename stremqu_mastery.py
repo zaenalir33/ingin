@@ -416,6 +416,7 @@ def main():
                     key=f"video_uploader_{slot}",
                     help=f"Video ke-{slot} dalam urutan playlist."
                 )
+                st.markdown("**600 MB per file** • MP4, FLV, MOV, MKV, WEBM")
                 if uploaded_file is not None:
                     saved = save_uploaded_file(uploaded_file, slot)
                     st.session_state[f"playlist_video_path_{slot}"] = saved
@@ -505,6 +506,7 @@ def main():
                 key="single_video_uploader",
                 help="Video yang akan di-loop terus selama playlist MP3 berjalan.",
             )
+            st.markdown("**600 MB per file** • MP4, FLV, MOV, MKV, WEBM")
             if uploaded_video is not None:
                 video_saved = save_uploaded_file(uploaded_video, 1)
                 st.success(f"Video siap: {uploaded_video.name}")
@@ -566,6 +568,7 @@ def main():
                 key=f"mp3_uploader_{slot}",
                 help=f"MP3 ke-{slot}. Setelah MP3 {slot} selesai, lanjut ke MP3 berikutnya.",
             )
+            st.markdown("**600 MB per file** • MP3")
             if uploaded_audio is not None:
                 audio_saved = save_uploaded_audio(uploaded_audio, slot)
                 st.success(f"MP3 {slot} siap: {uploaded_audio.name}")
