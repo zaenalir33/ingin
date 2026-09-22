@@ -388,7 +388,7 @@ def main():
         - Tidak menjamin jumlah view, penonton, subscriber, atau hasil tertentu.
         """)
 
-    show_ads = st.checkbox("Tampilkan Iklan", value=True)
+    show_ads = st.checkbox("📢 Tampilkan Iklan", value=False)
     if show_ads:
         components.html(
             """
@@ -402,10 +402,12 @@ def main():
             height=300
         )
 
+    st.markdown("## PILIH MODE STREAMING")
     mode = st.radio(
         "Pilih Mode Streaming",
         ["5 Video Playlist", "Video + MP3"],
         horizontal=True,
+        label_visibility="collapsed",
     )
 
     selected_paths = []
