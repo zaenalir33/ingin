@@ -413,7 +413,7 @@ def main():
             height=300
         )
 
-    st.markdown("### PILIH MODE STREAMING")
+    st.markdown("### 1. PILIH MODE STREAMING")
 
     # Mode streaming dibuat seperti menu checkbox, sama seperti "📢 Tampilkan Iklan".
     # Default: 🎬 5 Video Playlist. Menu ditampilkan di atas dan di bawah.
@@ -451,7 +451,7 @@ def main():
     audio_paths = []
 
     if mode == "5 Video Playlist":
-        st.subheader("Upload Playlist — 5 Video")
+        st.subheader("2. UPLOAD VIDEO / PLAYLIST (MIN. 1 VIDEO")
         st.caption("Video akan dimainkan sesuai urutan: Video 1 → Video 2 → Video 3 → Video 4 → Video 5.")
         st.info("Setiap slot bisa menggunakan Upload, Link langsung, atau Google Drive. Video dari Link/Drive diunduh langsung ke server sehingga tidak perlu upload melalui browser.")
 
@@ -663,10 +663,10 @@ def main():
             for i, path in enumerate(audio_paths, 1):
                 st.write(f"{i}. {Path(path).name}")
 
-    stream_key = st.text_input("Stream Key YouTube", type="password")
+    stream_key = st.text_input("3. STREAM KEY YOUTUBE", type="password")
     is_shorts = st.checkbox("Mode Shorts (720x1280)")
 
-    st.subheader("Pengaturan Durasi Streaming")
+    st.subheader("4. PENGATURAN DURASI STREAMING")
     playback_mode = st.radio(
         "Jalankan streaming",
         ["Tanpa batas", "Jumlah pengulangan", "Durasi streaming"],
