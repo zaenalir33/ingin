@@ -351,16 +351,22 @@ def main():
     st.markdown(
         """
         <style>
-        /* Sembunyikan keterangan otomatis Streamlit seperti "1GB per file • ...".
-           Tombol Upload dan area uploader tetap tampil. */
+        /* Ganti keterangan otomatis Streamlit (mis. "1GB per file • MP4...")
+           dengan teks batas upload kita sendiri. Tombol Upload tetap tampil. */
+        [data-testid="stFileUploaderDropzone"] [data-testid="stFileUploaderDropzoneInstructions"],
         [data-testid="stFileUploaderDropzone"] small {
             display: none !important;
         }
-        .upload-limit-note {
-            margin-top: -0.35rem;
-            margin-bottom: 0.75rem;
+        [data-testid="stFileUploaderDropzone"]::after {
+            content: "Max 600 MB per file agar live lancar & lama";
+            margin-left: 14px;
             font-size: 0.82rem;
-            color: #6b7280;
+            color: #9ca3af;
+            white-space: nowrap;
+            align-self: center;
+        }
+        .upload-limit-note {
+            display: none !important;
         }
         </style>
         """,
