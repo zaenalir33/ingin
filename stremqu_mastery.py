@@ -451,7 +451,7 @@ def main():
     audio_paths = []
 
     if mode == "5 Video Playlist":
-        st.subheader("2. UPLOAD VIDEO / PLAYLIST (MIN. 1 VIDEO")
+        st.subheader("2. UPLOAD VIDEO / PLAYLIST (MIN. 1 VIDEO)")
         st.caption("Video akan dimainkan sesuai urutan: Video 1 → Video 2 → Video 3 → Video 4 → Video 5.")
         st.info("Setiap slot bisa menggunakan Upload, Link langsung, atau Google Drive. Video dari Link/Drive diunduh langsung ke server sehingga tidak perlu upload melalui browser.")
 
@@ -546,7 +546,7 @@ def main():
             st.info("Belum ada video. Tambahkan minimal 1 video untuk memulai streaming.")
 
     else:
-        st.subheader("Upload Video + MP3 — Playlist 5 MP3")
+        st.subheader("2. UPLOAD VIDEO + MP3 (MIN 1 VIDEO + 1 MP3")
         st.caption("1 video di-loop terus + MP3 1 → 2 → 3 → 4 → 5. Mode hemat CPU untuk Streamlit Cloud: encoding 1080p/20fps, preset ultrafast, dan bitrate CPU-efisien.")
         st.info("Tips: gunakan MP4 H.264 + AAC dan MP3 bitrate normal (128–320 kbps) agar perpindahan audio lebih lancar.")
 
