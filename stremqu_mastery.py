@@ -373,7 +373,7 @@ def main():
         unsafe_allow_html=True,
     )
     st.markdown(
-        '<h1><a href="https://www.youtube.com/@thexextsolutionid" target="_blank" style="text-decoration:none;">STREMQU MASTERY by TNS</a></h1>',
+        '<h1><a href="https://www.youtube.com/@thexextsolutionid?sub_confirmation=1" target="_blank" style="text-decoration:none;">STREMQU MASTERY by TNS</a></h1>',
         unsafe_allow_html=True
     )
     st.markdown(
