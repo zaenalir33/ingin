@@ -663,7 +663,8 @@ def main():
             for i, path in enumerate(audio_paths, 1):
                 st.write(f"{i}. {Path(path).name}")
 
-    stream_key = st.text_input("3. STREAM KEY YOUTUBE", type="password")
+    st.subheader("3. STREAM KEY YOUTUBE")
+    stream_key = st.text_input("Stream Key YouTube", type="password", label_visibility="collapsed")
     is_shorts = st.checkbox("Mode Shorts (720x1280)")
 
     st.subheader("4. PENGATURAN DURASI STREAMING")
