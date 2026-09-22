@@ -349,6 +349,24 @@ def main():
         layout="wide"
     )
     st.markdown(
+        """
+        <style>
+        /* Sembunyikan keterangan otomatis Streamlit seperti "1GB per file • ...".
+           Tombol Upload dan area uploader tetap tampil. */
+        [data-testid="stFileUploaderDropzone"] small {
+            display: none !important;
+        }
+        .upload-limit-note {
+            margin-top: -0.35rem;
+            margin-bottom: 0.75rem;
+            font-size: 0.82rem;
+            color: #6b7280;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
+    st.markdown(
         '<h1><a href="https://www.youtube.com/@thexextsolutionid" target="_blank" style="text-decoration:none;">STREMQU MASTERY by TNS</a></h1>',
         unsafe_allow_html=True
     )
@@ -404,11 +422,15 @@ def main():
 
             if source == "Upload dari perangkat":
                 uploaded_file = st.file_uploader(
-                    f"Upload Video {slot} — 600 MB per file • MP4, FLV, MOV, MKV, WEBM",
+                    f"Upload Video {slot}",
                     type=["mp4", "flv", "mov", "mkv", "webm"],
                     label_visibility="collapsed",
                     key=f"video_uploader_{slot}",
                     help=f"Video ke-{slot} dalam urutan playlist."
+                )
+                st.markdown(
+                    '<div class="upload-limit-note">Max 600 MB per file agar live lancar &amp; lama</div>',
+                    unsafe_allow_html=True,
                 )
                 if uploaded_file is not None:
                     saved = save_uploaded_file(uploaded_file, slot)
@@ -494,11 +516,15 @@ def main():
 
         if video_source == "Upload dari perangkat":
             uploaded_video = st.file_uploader(
-                "Video Background — 600 MB per file • MP4, FLV, MOV, MKV, WEBM",
+                "Video Background",
                 type=["mp4", "flv", "mov", "mkv", "webm"],
                 label_visibility="collapsed",
                 key="single_video_uploader",
                 help="Video yang akan di-loop terus selama playlist MP3 berjalan.",
+            )
+            st.markdown(
+                '<div class="upload-limit-note">Max 600 MB per file agar live lancar &amp; lama</div>',
+                unsafe_allow_html=True,
             )
             if uploaded_video is not None:
                 video_saved = save_uploaded_file(uploaded_video, 1)
