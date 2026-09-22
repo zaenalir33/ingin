@@ -388,7 +388,7 @@ def main():
         - Tidak menjamin jumlah view, penonton, subscriber, atau hasil tertentu.
         """)
 
-    show_ads = st.expander("Tampilkan Iklan", expanded=True)
+    show_ads = st.checkbox("Tampilkan Iklan", value=True)
     if show_ads:
         components.html(
             """
