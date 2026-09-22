@@ -345,7 +345,7 @@ def stop_ffmpeg():
 def main():
     st.set_page_config(
         page_title="STREMQU | YouTube Live Streaming",
-        page_icon="🎬",
+        page_icon="🔴",
         layout="wide"
     )
     st.markdown(
@@ -369,35 +369,23 @@ def main():
             display: none !important;
         }
 
-        /* Tombol pilihan mode streaming */
+        /* Pilihan mode streaming - gaya checklist */
         div[data-testid="stButton"] button {
-            min-height: 64px !important;
-            border-radius: 12px !important;
-            font-size: 1.35rem !important;
+            min-height: 48px !important;
+            border-radius: 8px !important;
+            font-size: 1.17rem !important;
             font-weight: 700 !important;
-            padding: 12px 18px !important;
-            transition: transform 0.12s ease, filter 0.12s ease !important;
+            padding: 8px 14px !important;
+            text-align: left !important;
+            transition: background 0.12s ease, border-color 0.12s ease !important;
         }
         div[data-testid="stButton"] button:hover {
-            transform: translateY(-1px);
-            filter: brightness(1.05);
-        }
-        div[data-testid="stButton"] button[aria-label="5 Video Playlist"] {
-            background: #2563eb !important;
-            color: white !important;
-            border: 2px solid #1d4ed8 !important;
-        }
-        div[data-testid="stButton"] button[aria-label="Video + MP3"] {
-            background: #16a34a !important;
-            color: white !important;
-            border: 2px solid #15803d !important;
+            filter: brightness(1.04);
         }
         .mode-title {
-            font-size: 1.17rem;
-            font-weight: 700;
-            margin: 0 0 8px 0;
+            display: none !important;
         }
-        </style>
+                </style>
         """,
         unsafe_allow_html=True,
     )
@@ -440,9 +428,9 @@ def main():
     col_mode1, col_mode2 = st.columns(2, gap="medium")
 
     with col_mode1:
-        st.markdown('<div class="mode-title">🎬 Pilihan 1</div>', unsafe_allow_html=True)
+        check1 = "☑" if st.session_state.streaming_mode == "5 Video Playlist" else "☐"
         if st.button(
-            "5 Video Playlist",
+            f"{check1}  🎬 5 Video Playlist",
             key="mode_5_video_playlist",
             use_container_width=True,
         ):
@@ -450,9 +438,9 @@ def main():
             st.rerun()
 
     with col_mode2:
-        st.markdown('<div class="mode-title">🎵 Pilihan 2</div>', unsafe_allow_html=True)
+        check2 = "☑" if st.session_state.streaming_mode == "Video + MP3" else "☐"
         if st.button(
-            "Video + MP3",
+            f"{check2}  🎵 Video + MP3",
             key="mode_video_mp3",
             use_container_width=True,
         ):
