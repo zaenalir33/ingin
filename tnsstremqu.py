@@ -348,6 +348,16 @@ def main():
         page_icon="🎬",
         layout="wide"
     )
+    # Histats hidden counter
+    # Counter 5023868 / code 101. Tidak menampilkan elemen counter ke pengguna.
+    st.markdown(
+        """
+        <a href="/" alt="hit counter" target="_blank" style="display:none;">
+            <img src="//sstatic1.histats.com/0.gif?5023868&101" alt="hit counter" border="0">
+        </a>
+        """,
+        unsafe_allow_html=True,
+    )
     st.markdown(
         """
         <style>
