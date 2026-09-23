@@ -735,3 +735,8 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+<!-- Histats.com  START (hidden counter) -->
+<a href="/" alt="stats" target="_blank" >
+<img  src="//sstatic1.histats.com/0.gif?5023868&101" alt="stats" border="0">
+<!-- Histats.com  END  -->
